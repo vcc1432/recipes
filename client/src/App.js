@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './App.css';
+import RecipesListContainer from './components/RecipesListContainer'
+import RecipeDetailsContainer from './components/RecipeDetailsContainer'
+import Home from './components/Home'
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <h1>Hello world!</h1>
-      </div>
+      <Router>
+          <div>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/recipes" component={RecipesListContainer} />
+            <Route path="/recipes/:id" component={RecipeDetailsContainer} />
+          </div>
+      </Router>
     );
   }
 }

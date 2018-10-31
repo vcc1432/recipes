@@ -1,29 +1,21 @@
-import { JsonController, Get, Param, HttpCode, Body, Post } from 'routing-controllers'
-import Ad from './entity'
+import { JsonController, Get, Param} from 'routing-controllers'
+import Recipe from './entity'
 
 
 @JsonController()
 export default class AdController {
 
-    @Get('/ads')
-    async allAds() {
-      const ads = await Ad.find()
-      return { ads }
+    @Get('/recipes')
+    async allRecipes() {
+      const recipes = await Recipe.find()
+      return { recipes }
     }
 
-    @Get('/ads/:id')
-    async getAd(
+    @Get('/recipes/:id')
+    async getRecipe(
         @Param('id') id: number
     ) {
-      return await Ad.findOne(id)
+      return await Recipe.findOne(id)
     }
-
-    @Post('/ads')
-      @HttpCode(201)
-      createAd(
-        @Body() ad: Ad
-      ) {
-        return ad.save()
-      }
 
 }
